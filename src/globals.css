@@ -1,0 +1,653 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+
+header {
+  position: relative;
+  height: 200px; /* Ajusta esto al tamaño deseado */
+}
+
+header video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que el video cubra completamente el header */
+  z-index: 0;
+}
+
+/* Contenido del header debería tener un z-index superior al video */
+header .content {
+  position: relative;
+  z-index: 1;
+}
+
+.relative {
+  position: relative; /* El contenedor del botón debe ser relativo */
+  z-index: 2; /* Asegúrate de que esté por encima del video */
+}
+
+
+
+/*CSS VARIABLES*/
+:root {
+    /*====Colores=====*/
+    --hue-color:242;
+
+    /* HSL Color Mode */
+    --skin-color: hsl(242, 61%, 46%);
+    --title-color: hsl(var(--hue-color), 8%, 95%);
+    --text-color: hsl(var(--hue-color), 8%, 85%);
+    --body-color: hsl(var(--hue-color), 19%, 5%);
+    --box-color: hsl(var(--hue-color), 14%, 10%);
+    --scroll-bar-color: hsl(var(--hue-color), 12%, 38%);
+    --scroll-thumb-color: hsl(var(--hue-color), 12%, 26%);
+    
+    /* Fuente y tipografía*/
+    --body-font:'Poppins', sans-serif;
+
+    /*=======*/
+    --biggest-font-size: 3rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+
+    /*Font weight*/
+    --font-medium:500;
+    --font-bold: 600;
+
+    /*Margenes Bottom*/
+    --mb-0-25: .25rem;
+    --mb-0-5: .5rem;
+    --mb-0-75: .75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+    --mb-3: 3rem
+
+    /*Z Index*/
+    --z-fixed: 10;
+    --z-modal: 100;
+}
+
+/*Tipografía responsive*/
+@media screen and (max-width: 1024px){
+   :root{
+    --biggest-font-size: 2rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1.125rem;
+    --normal-font-size: 0.938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+   } 
+}
+
+/*Base*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+body,
+button,
+input{
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+
+}
+
+body{
+    background-color: var(--body-color);
+    color: var(--text-color);
+
+}
+
+h1, h2,h3 {
+    color: var(--title-color);
+    font-weight: var(--font-bold);
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+button{
+    cursor: pointer;
+}
+
+button,
+input{
+    border:none;
+    outline: none;
+}
+
+/*LAYOUT*/
+.container{
+  max-width: 1250px;
+  margin-left:auto;
+  margin-right: auto;
+}
+
+.grid{
+  display:grid;
+
+}
+/*Clases CSS reusables*/
+.section{
+  padding: 4rem 0 2rem;
+}
+.section__title{
+  text-align: center;
+  font-size: var(--h1-font-size);
+  margin-bottom: var(--mb-3);
+}
+.section__title::before{
+  content: attr(data-heading);
+  display:block;
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-medium);
+  color: var(--skin-color);
+}
+
+/*HOME SECTION*/
+.home{
+  background: url('../public/bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+}
+/* Asumiendo que .home__img y .home__data están dentro de .home__container */
+.home__container {
+  display: flex;
+  justify-content: space-between; /* Alinea los elementos a los extremos del contenedor */
+  align-items: center; /* Centra los elementos verticalmente */
+}
+
+.home__img {
+  order: 2; /* Mueve la imagen al final del contenedor flex (lado derecho) */
+  width: 50%; /* Ajusta esto según el tamaño deseado para tu imagen */
+}
+
+.home__data {
+  order: 1; /* Mueve el texto al inicio del contenedor flex (lado izquierdo) */
+  width: 50%; /* Ajusta esto según el espacio que quieras que ocupe el texto */
+  /* Añade más estilos aquí si es necesario */
+}
+.my__info{
+  display:flex;
+  column-gap: 1.8rem;
+  position:absolute;
+  left:0;
+  bottom:1.8rem;
+}
+.home__title{
+  font-size: var(--biggest-font-size);
+
+}
+
+.home__subtitle{
+  font-size: var(--h1-font-size);
+  font-weight: var(--font-medium);
+  margin-bottom: var(--mb-0-75);
+}
+
+.home__description{
+  max-width: 450px;
+  margin-bottom: var(--mb-2);
+}
+
+/*BOTONES*/
+.button{
+  display:inline-flex;
+  align-items: center;
+  column-gap: .5rem;
+  background-color: var(--skin-color);
+  color:var(--title-color);
+  padding: .75rem 1.4rem;
+  border-radius: .25rem;
+  font-weight:--font var(--font-medium);
+  position:relative;
+  z-index: 1;
+}
+
+.button::after{
+  position:absolute;
+  content:'';
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color:#343a40;
+  z-index:-1;
+  transform-origin: center;
+  transform:scale(0);
+  border-radius: .25rem;
+  transition: .3s;
+
+}
+
+.button:hover::after{
+  transform:scale(1);
+}
+
+
+/*Sección About*/
+.about__container{
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 4rem;
+    align-items: center;
+    
+}
+.about__img{
+    width: 480px;
+    border-radius: 0.75rem;
+    justify-self: center;
+    margin-top: 2rem;
+}
+
+.about__heading{
+    font-size: var(--h3-font-size);
+    margin-bottom: var(--mb-0-75);
+    margin-top: 2rem;
+}
+.about__description{
+    text-align: justify;
+    padding-right: 6rem;
+    margin-bottom: var(--mb-2);
+    
+}
+
+.about__info{  
+    grid-template-columns: repeat(3, 140px);
+    column-gap: 1rem;
+    margin-bottom: var(--mb-3);
+}
+
+.about__box{
+    
+    text-align: center;
+    border-radius: 1.25rem;
+    padding: 1rem 1.25rem;
+    background-color: var(--box-color);
+}
+.about__icon{
+    font-size: 2rem;
+    color: var(--skin-color);
+    margin-bottom: var(--mb-0-75);
+}
+.about__title{
+    font-size: var(--small-font-size);
+}
+
+.about__subtitle{
+    font-size: var(--smaller-font-size);
+}
+
+/*====Bibliografía y Documentación=====*/
+.doc__container{
+  grid-template-columns: repeat(2,250px);
+  column-gap: 8rem;
+  justify-content: center;
+}
+
+.timeline__item{
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: var(--mb-2-5);
+  margin-top: var(--mb-2);
+}
+
+.timeline__item:last-child{
+  margin-bottom: 0;
+}
+
+.timeline__item::before{
+  content:'';
+  width: 1px;
+  position: absolute;
+  left: .48rem;
+  top:0;
+  height: 100%;
+  background-color: var(--skin-color);
+}
+
+.circle__dot{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1rem;
+  width: 1rem;
+  border: 2px solid var(--skin-color);
+  border-radius:50%;
+  background-color: var(--skin-color);
+  transition: .3s;
+}
+
+.timeline__item:hover .circle__dot{
+  background-color: var(--body-color);
+}
+
+.timeline__title{
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-medium);
+  margin-bottom: var(--mb-0-25);    
+}
+
+.timeline__text{
+  font-size: var(--smaller-font-size);
+  margin-bottom: var(--mb-1);
+}
+
+.timeline__link{
+  display: flex;
+  align-items: center;
+  column-gap: .4rem;
+  font-size: var(--small-font-size);
+  color: var(--skin-color);
+}
+.timeline__link a:link,
+.timeline__link a:visited {
+  color: var(--skin-color); 
+}
+
+.timeline__link a:hover{
+  color:white;
+}
+
+/*===============BREAKPOINTS=======*/
+/*Para dispositivos grandes*/
+@media screen and (max-width: 1408px){
+  .container{
+      margin-left: var(--mb-2-5);
+      margin-right: var(--mb-2-5);
+  }
+}
+
+@media screen and (max-width: 1216px){
+  .about__container{
+      column-gap: 2.5rem;
+  }
+
+  .about__description{
+      padding-right: 0;
+  }
+
+  .work__container{
+      grid-template-columns: repeat(2, 330px);
+      gap: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 1024px){
+  .container{
+      margin-left: var(--mb-1-5);
+      margin-right: var(--mb-1-5);
+  }
+
+  .sidebar{
+      width: 100%;
+      z-index: 999;
+      transform: translateX(-100%);
+  }
+
+  .show-sidebar{
+      transform: translateX(0);
+  }
+
+  .nav__logo{
+      display: none;
+  }
+
+  .nav__menu{
+      height: 100%;
+      width: 100%;
+      transform: rotate(0deg)translateX(0);
+      display: flex;
+      justify-content: center;
+  }
+
+  .nav__list{
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .nav__link{
+      padding: 1rem 0;
+      line-height: 1.5;
+      
+  }
+
+  .nav__link.active-link::after, .nav__link:hover::after{
+      bottom: 0;
+  }
+
+  .nav__close{
+      display: block;
+  }
+
+  .nav__toggle{
+      display: flex;
+  }
+  .main{
+      margin-left: 0;
+  }
+
+  .about__container{
+      grid-template-columns: 1fr;
+      row-gap: 2.5rem;
+  }
+
+  .about__img{
+      width: 350px;
+  }
+
+  .about__data{
+      text-align: center;
+  }
+
+  .about__info{
+      justify-content: center;
+  }
+
+  .about__box{
+      padding:.75rem;
+  }
+
+  .about__description{
+      padding: 0 4rem;
+      text-align: center;
+  }
+
+  .work__card{
+      padding: 1rem;
+  }
+
+  .work__img{
+      margin-bottom: var(--mb-0-75);
+  }
+
+  .work__title{
+      margin-bottom: var(--mb-0-25);
+  }
+
+  .doc__container{
+      grid-template-columns: repeat(2, 290px);
+  }
+
+  .portfolio__item-details{
+      margin-bottom: var(--mb-1-5);
+  }
+
+  .details__info li{
+      margin-bottom: var(--mb-0-5);
+  }
+
+  .details__title{
+      margin-bottom: var(--mb-0-75);
+  }
+}
+
+@media screen and (max-width: 768px){
+  
+  .work__filters {
+      flex-direction: column;
+      text-align: center; 
+    }
+  
+    .work__item {
+      margin-bottom: 0.5rem; 
+    }
+    
+  .about__img{
+      width: 250px;        
+  }
+
+  .work__container{
+      grid-template-columns: 330px;
+  }
+  
+  .doc__container{
+      grid-template-columns: 290px;
+      row-gap: 3rem;
+  }
+  
+  .portfolio__popup-inner{
+      width: 420px;
+      padding: 2.8rem 1.5rem 2.5rem;
+  }
+
+  .portfolio__popup-content{
+      grid-template-columns: 1fr;
+      row-gap: 1.6rem;
+  }
+
+  .details__title{
+      font-size: var(--normal-font-size);
+  }
+
+  .portfolio__popup-close{
+      top: .5rem;
+  }
+}
+
+@media screen and (max-width: 576px){
+
+  .nav__toggle{
+      right: initial;
+      left: 1.5rem;
+  }
+
+  .home{
+      background-image: none;
+      height: initial;
+      align-items: initial;
+      padding: 7rem 0 2rem;
+  }
+
+  .home__container{
+    display: flex;
+    flex-direction: column; /* Cambia la disposición a vertical */
+    align-items: center; /* Centra los elementos horizontalmente */
+    text-align: center; /* Asegura que el texto también esté centrado */
+}
+
+  .home__img{
+    order: -1; /* Coloca la imagen encima del texto */
+    width: 80%; /* Ajusta este valor según tus necesidades */
+    max-width: 300px; /* Evita que la imagen sea demasiado grande */
+    margin-bottom: 1rem; /* Espacio entre la imagen y el texto */
+  }
+
+  .home__data{
+    order: 1; /* Asegura que el texto venga después de la imagen */
+    width: 100%; /* Utiliza todo el ancho disponible */
+  }
+
+  .home__title, .home__subtitle, .home__description{
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .my__info{
+      display: none;
+  }
+
+  .about__info{
+      grid-template-columns: repeat(3, 1fr);
+  }
+
+  .about__description{
+      padding: 0;
+  }
+
+  .work__container{
+      grid-template-columns: 300px;
+  }
+
+  }
+
+      
+
+
+@media screen and (max-width: 350px){
+  .container{
+      margin-left: var(--mb-1);
+      margin-right: var(--mb-1);
+  }
+
+  .home__img{
+      width: 200px;
+
+  }
+
+  .home__title{
+      font-size: var(--h1-font-size);
+  }
+
+  .home__subtitle{
+      font-size: var(--normal-font-size);
+  }
+
+  .about__info{
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: .5rem;
+  }
+  .work__container,
+  .doc__container{
+      grid-template-columns: 1fr;
+  }
+
+  .work__item{
+      font-size: var(--small-font-size);
+  }
+
+  .work__filters{
+      column-gap: .25rem;
+  }
+
+
+}
+
