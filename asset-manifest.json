@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Portafolio_Electronico/static/css/main.c7b1f696.css",
-    "main.js": "/Portafolio_Electronico/static/js/main.ae46c48f.js",
+    "main.css": "/Portafolio_Electronico/static/css/main.8fb03a47.css",
+    "main.js": "/Portafolio_Electronico/static/js/main.91c6b1fd.js",
     "static/js/787.9b931329.chunk.js": "/Portafolio_Electronico/static/js/787.9b931329.chunk.js",
-    "static/media/bg.jpg": "/Portafolio_Electronico/static/media/bg.957116e01c090c4d7858.jpg",
+    "static/media/wp.png": "/Portafolio_Electronico/static/media/wp.ee2ea9ac6eb3feaa4485.png",
     "index.html": "/Portafolio_Electronico/index.html",
-    "main.c7b1f696.css.map": "/Portafolio_Electronico/static/css/main.c7b1f696.css.map",
-    "main.ae46c48f.js.map": "/Portafolio_Electronico/static/js/main.ae46c48f.js.map",
+    "main.8fb03a47.css.map": "/Portafolio_Electronico/static/css/main.8fb03a47.css.map",
+    "main.91c6b1fd.js.map": "/Portafolio_Electronico/static/js/main.91c6b1fd.js.map",
     "787.9b931329.chunk.js.map": "/Portafolio_Electronico/static/js/787.9b931329.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c7b1f696.css",
-    "static/js/main.ae46c48f.js"
+    "static/css/main.8fb03a47.css",
+    "static/js/main.91c6b1fd.js"
   ]
 }
